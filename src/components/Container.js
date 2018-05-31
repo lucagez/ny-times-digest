@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import ReactDOM from 'react-dom';
-import Card from './Card';
+import News from './News';
 import Frame from './Frame';
 
 const api_key = '7f16504f47bf4bfd96b2211ee6d00507';
@@ -38,21 +38,22 @@ class Container extends Component {
     render() {
         const { style, data } = this.state;
         return (
-            <div 
-                onMouseDown={this.down}
-                onMouseUp={this.up}
+            // <div 
+            //     onMouseDown={this.down}
+            //     onMouseUp={this.up}
 
-                >
-                <div className="cell" >
-                    <div 
-                    style={{transform: `translateX(${this.state.style}px)`}} 
-                    className="news"
-                    >
-                        <Card />
-                        <Card />
-                    </div>
-                </div>
-            </div>
+            //     >
+            //     <div className="cell" >
+            //         <div 
+            //         style={{transform: `translateX(${this.state.style}px)`}} 
+            //         // className="news"
+            //         >
+            //             <News />
+                        
+            //         </div>
+            //     </div>
+            // </div>
+            <News />
         )
     }
 }
