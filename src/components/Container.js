@@ -54,6 +54,13 @@ class Container extends Component {
             //     </div>
             // </div>
             <News />
+            // <div
+            // onMouseDown={this.down}
+            // onMouseUp={this.up}>
+            //     <div className="cell" style={{background: `${this.state.background}`}}>
+                
+            //     </div>
+            // </div>
         )
     }
 }

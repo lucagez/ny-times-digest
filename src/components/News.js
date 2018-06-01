@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Button from './Button';
+import NYloader from './NYloader';
 
+let delta;
 const api_key = '7f16504f47bf4bfd96b2211ee6d00507';
 const url = 'https://api.nytimes.com/svc/mostpopular/v2/mostviewed/Technology/1.json';
 const query = `${url}?&api-key=${api_key}`;
@@ -21,10 +23,11 @@ class News extends Component {
         super(props);
         this.state = {
             data: undefined,
-            style: 12,
-            background: 'black',
-            colorButton: 'wheat',
-            shadowButton: 'white'
+            style: 0,
+            background: '#E4E5E4',
+            colorButton: '#2A68FC',
+            shadowButton: '#1E3C83',
+            error: false
         }
         this.down = this.down.bind(this);
         this.up = this.up.bind(this);
@@ -32,24 +35,36 @@ class News extends Component {
 
     down(e) {
         this.setState({x: e.clientX});
+        delta = 0;
     }
     up(e) {
-        const delta = this.state.x - e.clientX;
+        const len = this.state.data.length * 357;
+        delta = this.state.x - e.clientX;
         let randomPalette = palette[Math.floor(Math.random() * 6)];
         // console.log(randomPalette); 
         // this.setState({delta});
-        console.log(delta);
+        // console.log(delta);
+        let abs = Math.abs(delta);
+        // console.log(abs + 'yolo');
         var yolo = 357;
-        var move = 0;
+        var move = this.state.style;
         // (delta < 0) ? this.setState({style: (this.state.style += yolo)}) : this.setState({style: (this.state.style -= yolo)});
-        (delta < 0) ? move = this.state.style + yolo : move = this.state.style - yolo;
+        if(move - delta >= -len && move - delta <= 0) {
+            if(abs > 30) {
+                // move = 0;
+                (delta < 0) ? move = this.state.style + yolo : move = this.state.style - yolo;
+                (move <= -len) ? this.setState({error: true}) : this.setState({error: false});
+            }
+        }
         this.setState({
             background: randomPalette.background,
             colorButton: randomPalette.colorButton,
             shadowButton: randomPalette.shadow,
-            style: move
+            style: move,
         })
-        console.log(this.state.style);
+        console.log(move);
+        console.log(len);
+        // console.log(this.state.style);
     }
 
     display(result) {
@@ -65,25 +80,28 @@ class News extends Component {
             .catch(error => error);
     }
     render() {
-        const { style, data } = this.state;
+        const { style, data, error } = this.state;
+        const txt = 'No more news ):';
 
         return (
             <div
             onMouseDown={this.down}
             onMouseUp={this.up}>
                 <div className="cell" style={{background: `${this.state.background}`}}>
+                    <div className={error ? 'sorry visible' : 'sorry'}><h1>{txt}</h1></div>
                     <div 
                     className="news"
                     style={{transform: `translateX(${this.state.style}px)`}}>
                         {data ? data.map((e, i) => {
                             return (
                                 <div className="card" key={i}>
-                                    <div className="date"><i>{e.published_date}</i></div>
+                                
+                                    <img className="img" src={`${e.media[0]['media-metadata'][2].url}`} alt="" srcSet=""/>
                                     <div className="title"><h1>{e.title}</h1></div>
                                     <div className="abstract"><p>{e.abstract}</p></div>
                                     <div className="tags">
                                         {e.adx_keywords.split(';').map((tag, j) => {
-                                            if (j < 6) {
+                                            if (j < 3) {
                                                 return(
                                                     <div className="singleTag" key={j}>{tag}</div>
                                                 )
@@ -93,16 +111,19 @@ class News extends Component {
                                             )
                                         })}
                                     </div>
+                                    
                                     <Button color={this.state.colorButton} shadow={this.state.shadowButton}/>
                                 </div>
                             )
-                        }) : 'ciao'}
+                        }) : <NYloader />}
+            
                     </div>
                 </div>
             </div>
         )
     }
 }
+
 
 export default News;
 

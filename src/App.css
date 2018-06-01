@@ -44,6 +44,7 @@ i {
     height: 812px;
     border-radius: 38px;
     background: #F9D527;
+    text-align: center;
     transition: background 1s cubic-bezier(0.075, 0.82, 0.165, 1);
     z-index: -1;
 }
@@ -75,6 +76,7 @@ i {
     position: absolute;
     top: 0;
     left: 0;
+    margin-left: 12px;
     display: flex;
     min-width: 100%;
     min-height: 100%;
@@ -95,6 +97,7 @@ i {
     right: 0; */
     /* bottom: 50px; */
     /* margin: auto; */
+    text-align: left;
     min-width: 342px;
     min-height: 90%;
     max-height: 656px;
@@ -123,7 +126,7 @@ i {
     /* margin-top: 66px;
     margin-bottom: 14px;
     margin-left: 16px; */
-    margin: 0 16px 14px 16px;
+    margin: 0 16px 1px 16px;
     /* height: 121.66px; */
 
 }
@@ -138,13 +141,13 @@ i {
 
 .tags {
     /* Travel */
-    margin: 50px 16px 0 16px;
+    margin: 10px 16px 0 16px;
     position: relative;
 
 
     font-family: Lato;
     font-style: normal;
-    font-size: 12px;
+    font-size: 11px;
 
     color: #F5F7F3;
 
@@ -152,7 +155,7 @@ i {
 
 .singleTag {
     display: inline-block;
-    margin: 0 16px 10px 0;
+    margin: 0 8px 6px 0;
     background: #888;
     padding: 4px 10px 5px 10px;
     border-radius: 7px;
@@ -165,6 +168,31 @@ i {
     right: 0;
     margin: auto;
     bottom: -10px;
+}
+
+.img {
+    width: 342px;
+    border-radius: 8px 8px 0 0;
+}
+
+.sorry {
+    position: relative;
+    /* right: 0; */
+    top: 40%;
+    opacity: 0;
+    transition: opacity 1s linear;
+    /* margin: 200px; */
+}
+
+.visible {
+    opacity: 1;
+}
+
+.NYloader {
+    position: relative;
+    /* left: 0;
+    right: 0; */
+    margin: auto;
 }
 
 button {
