@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import Button from './Button';
 import NYloader from './NYloader';
+import Cards from './Cards';
+import Sorry from './Sorry';
 
 let delta;
-const api_key = '7f16504f47bf4bfd96b2211ee6d00507';
-const url = 'https://api.nytimes.com/svc/mostpopular/v2/mostviewed/Technology/1.json';
-const query = `${url}?&api-key=${api_key}`;
+// const api_key = '7f16504f47bf4bfd96b2211ee6d00507';
+// const url = 'https://api.nytimes.com/svc/mostpopular/v2/mostviewed/Technology/1.json';
+// const query = `${url}?&api-key=${api_key}`;
 const palette = [
     {background: '#E4E5E4', colorButton: '#5DC472', shadow: '#4A9A5A'},
     {background: '#F7AFA3', colorButton: '#2A68FC', shadow: '#1E3C83'},
@@ -38,7 +40,8 @@ class News extends Component {
         delta = 0;
     }
     up(e) {
-        const len = this.state.data.length * 357;
+        // const len = this.state.data.length * 357;
+        const len = 7140;
         delta = this.state.x - e.clientX;
         let randomPalette = palette[Math.floor(Math.random() * 6)];
         // console.log(randomPalette); 
@@ -67,32 +70,35 @@ class News extends Component {
         // console.log(this.state.style);
     }
 
-    display(result) {
-        this.setState({data: result});
-    }
-    componentDidMount() {
-        fetch(query)
-            .then(response => response.json())
-            .then(result => {
-                this.setState({data: result.results});
-                console.log(this.state.data)
-            })
-            .catch(error => error);
-    }
+    // display(result) {
+    //     this.setState({data: result});
+    // }
+    // componentDidMount() {
+    //     fetch(query)
+    //         .then(response => response.json())
+    //         .then(result => {
+    //             this.setState({data: result.results});
+    //             console.log(this.state.data)
+    //         })
+    //         .catch(error => error);
+    // }
     render() {
-        const { style, data, error } = this.state;
-        const txt = 'No more news ):';
+        const { style, error } = this.state;
 
         return (
             <div
             onMouseDown={this.down}
-            onMouseUp={this.up}>
+            onMouseUp={this.up}
+            onTouchStart={(e) => console.log(e.touches[0].clientX)}
+            onTouchEnd={() => this.up}>
                 <div className="cell" style={{background: `${this.state.background}`}}>
-                    <div className={error ? 'sorry visible' : 'sorry'}><h1>{txt}</h1></div>
+                    <Sorry visibility={error}/>
                     <div 
                     className="news"
                     style={{transform: `translateX(${this.state.style}px)`}}>
-                        {data ? data.map((e, i) => {
+                        {this.props.children}
+                        {/* {data ? <Cards data={data}/> : <NYloader />} */}
+                        {/* {data ? data.map((e, i) => {
                             return (
                                 <div className="card" key={i}>
                                 
@@ -114,9 +120,10 @@ class News extends Component {
                                     
                                     <Button color={this.state.colorButton} shadow={this.state.shadowButton}/>
                                 </div>
+                                <Card />
                             )
-                        }) : <NYloader />}
-            
+                        }) : <NYloader />} */}
+
                     </div>
                 </div>
             </div>
