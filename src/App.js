@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import Button from './components/Button';
-// import Card from './components/Card';
 import News from './components/News';
 import Cards from './components/Cards';
 import NYloader from './components/NYloader';
@@ -31,25 +29,11 @@ class App extends Component {
   }
   render() {
     const { data } = this.state;
-    // console.log(data)
     return (
       <div className="container">
-
         <News>
           {data ? <Cards data={data}/> : <NYloader />}
         </News>
-        
-        {/* {data ? data.map(e => {
-          return (
-            <div className="box">
-              <div className="title"><h1>{e.title}</h1></div>
-              <div className="abstract">{e.abstract}</div>
-              <div className="abstract"><a href={e.url}>read full article</a></div>
-              <div className="abstract"><h3>Tags:</h3></div>
-              <div className="abstract">{e.adx_keywords}</div>
-            </div>
-          )
-        }) : 'ciao'} */}
       </div>
     );
   }

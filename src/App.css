@@ -1,220 +1,55 @@
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans:700|Lato:400,700');
 
+:root {
+    --text-color: #292929;
+    --text-gray: #888888;
+    --white: #F5F7F3;
+    --title-font: Josefin Sans;
+    --abstract-font: Lato;
+    --cell-top: 100px;
+    --cell-height: 812px;
+    --cell-width: 395px;
+}
+
+h1, p {
+    color: var(--text-color);
+}
+
 h1 {
-    font-family: Josefin Sans;
-    font-style: normal;
+    font-family: var(--title-font);
     font-weight: bold;
     line-height: 34px;
     font-size: 26px;
     letter-spacing: -0.2px;
-    
-    color: #292929;
 }
 
 p {
 
-    font-family: Lato;
+    font-family: var(--abstract-font);
     font-style: normal;
     line-height: 26px;
     font-size: 18px;
-
-    color: #292929;
 }
 
 i {
-    color: #888;
+    color: var(--text-gray);
 }
 
-.box {
-    margin: 50px;
-    border: 3px solid #333;
-    padding: 20px;
-}
-
-.cell {
-    /* display: block; */
-    position: relative;
-    overflow: hidden;
-    border: 18px solid #292929;
-    /* position: absolute; */
-    margin: auto;
-    top: 100px;
-    /* border: 1px solid red; */
-    width: 395px;
-    height: 812px;
-    border-radius: 38px;
-    background: #F9D527;
-    text-align: center;
-    transition: background 1s cubic-bezier(0.075, 0.82, 0.165, 1);
-    z-index: -1;
-}
-
-.cell:before {
-    position: absolute;
-    left: calc(50% - 28%);
-    top: 0;
-    width: 56%;
-    background: #292929;
-    height: 36px;
-    content: "";
-    border-radius: 0 0 30px 30px;
-}
-
-.wtf {
-    /* border: 2px solid #222225; */
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 10;
-    /* left: 40px; */
-}
-
-.news {
-    /* border: 1px solid black; */
-    /* transform: translateX(10px); */
-    /* transform: translateX(-330px); */
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin-left: 12px;
-    display: flex;
-    min-width: 100%;
-    min-height: 100%;
-    /* overflow-x: auto; */
-    overflow: hidden;
-    z-index: 1;
-    transition: transform .3s linear;
-}
-
-.card {
-    /* border: 1px solid red; */
-    /* display: inline-block; */
-    margin-top: 120px;
-    margin-left: 15px;
-    position: relative;
-    /* position: absolute;
-    left: 0;
-    right: 0; */
-    /* bottom: 50px; */
-    /* margin: auto; */
-    text-align: left;
-    min-width: 342px;
-    min-height: 90%;
-    max-height: 656px;
-    border-radius: 8px;
-    background: #F5F7F3;
-    color: #292929;
-    box-shadow: 1px 1px 5px rgba(0,0,0,.15);
-    /* padding: 10px; */
-}
-
-.title, .abstract {
-    margin: 10px;
-}
-
-.date {
-    text-align: right;
-    position: relative;
-    margin: 50px 16px 14px 16px;
-}
-
-.title {
-    /* An Ugly Myspace Prof */
-
-    position: relative;
-    max-width: 293.14px;
-    /* margin-top: 66px;
-    margin-bottom: 14px;
-    margin-left: 16px; */
-    margin: 0 16px 1px 16px;
-    /* height: 121.66px; */
-
-}
-
-.abstract {
-    /* While it was just a  */
-
-    position: relative;
-    max-width: 310px;
-    margin: 0 16px 14px 16px;
-}
-
-.tags {
-    /* Travel */
-    margin: 10px 16px 0 16px;
-    position: relative;
-
-
-    font-family: Lato;
-    font-style: normal;
-    font-size: 11px;
-
-    color: #F5F7F3;
-
-}
-
-.singleTag {
-    display: inline-block;
-    margin: 0 8px 6px 0;
-    background: #888;
-    padding: 4px 10px 5px 10px;
-    border-radius: 7px;
-}
-
-.readMore {
-    /* border: 1px solid red; */
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: auto;
-    bottom: -10px;
-}
-
-.img {
-    width: 342px;
-    border-radius: 8px 8px 0 0;
-}
-
-.sorry {
-    position: relative;
-    /* right: 0; */
-    top: 40%;
-    opacity: 0;
-    transition: opacity 1s linear;
-    /* margin: 200px; */
-}
-
-.visible {
-    opacity: 1;
-}
-
-.NYloader {
-    position: relative;
-    /* left: 0;
-    right: 0; */
-    margin: auto;
-}
 
 button {
-    /* Button */
     cursor: pointer;
     width: 286px;
     height: 60px;
-
     box-shadow: 0px 7px 0px #502F85;
-
-
     background: #8249DE;
     border-radius: 8px;
     border: none;
-
     font-family: Josefin Sans;
     font-weight: normal;
     line-height: 20px;
     font-size: 18px;
     text-align: center;
-
-    color: #F5F7F3;
+    color: var(--white);
     transition: box-shadow .1s ease-out, bottom .1s ease-out, background 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
@@ -231,3 +66,151 @@ button::-moz-focus-inner {
     border: 0;
 }
 
+.box {
+    margin: 50px;
+    border: 3px solid var(--text-color);
+    padding: 20px;
+}
+
+.cell {
+    position: relative;
+    overflow: hidden;
+    border: 18px solid var(--text-color);
+    margin: auto;
+    top: var(--cell-top);
+    max-width: var(--cell-width);
+    height: var(--cell-height);
+    border-radius: 38px;
+    background: #F9D527;
+    text-align: center;
+    transition: background 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+    z-index: -1;
+}
+
+.cell:before {
+    position: absolute;
+    left: calc(50% - 28%);
+    top: 0;
+    width: 56%;
+    background: var(--text-color);
+    height: 36px;
+    content: "";
+    border-radius: 0 0 30px 30px;
+}
+
+.news {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 12px;
+    display: flex;
+    min-width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    transition: transform .3s linear;
+}
+
+.card {
+    margin-top: 120px;
+    margin-left: 15px;
+    position: relative;
+    text-align: left;
+    min-width: 342px;
+    min-height: 90%;
+    max-height: 656px;
+    border-radius: 8px;
+    background: var(--white);
+    color: var(--text-color);
+    box-shadow: 1px 1px 5px rgba(0,0,0,.15);
+}
+
+.title, .abstract {
+    margin: 10px;
+}
+
+.date {
+    text-align: right;
+    position: relative;
+    margin: 50px 16px 14px 16px;
+}
+
+.title {
+    position: relative;
+    max-width: 293.14px;
+    margin: 0 16px -15px 16px;
+
+}
+
+.abstract {
+    position: relative;
+    max-width: 310px;
+    margin: 0 16px 1px 16px;
+}
+
+.tags {
+    margin: 10px 16px 0 16px;
+    position: relative;
+    font-family: var(--abstract-font);
+    font-style: normal;
+    font-size: 11px;
+    color: var(--white);
+}
+
+.singleTag {
+    display: inline-block;
+    margin: 0 8px 6px 0;
+    background: var(--text-gray);
+    padding: 4px 10px 5px 10px;
+    border-radius: 7px;
+}
+
+.readMore {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: -10px;
+}
+
+.img {
+    width: 342px;
+    border-radius: 8px 8px 0 0;
+}
+
+.sorry {
+    position: relative;
+    top: 40%;
+    opacity: 0;
+    transition: opacity 1s linear;
+}
+
+.visible {
+    opacity: 1;
+}
+
+.NYloader {
+    position: relative;
+    margin: auto;
+}
+
+@media (max-width: 400px) {
+    :root {
+        --cell-width: 100%;
+        --cell-height: 100vh;
+        --cell-top: 0;
+    }
+
+    .cell {
+        border: 0px solid black;
+        border-radius: 0;
+    }
+
+    .cell:before {
+        display: none;
+    }
+
+    .card {
+        margin-top: 12px;
+    }
+}
