@@ -3,7 +3,6 @@ import Sorry from './Sorry';
 
 let delta, abs, randomPalette;
 const len = 7140;
-var yolo = 357;
 const palette = [
     {background: '#E4E5E4', colorButton: '#5DC472', shadow: '#4A9A5A'},
     {background: '#F7AFA3', colorButton: '#2A68FC', shadow: '#1E3C83'},
@@ -22,7 +21,8 @@ class News extends Component {
             background: '#E4E5E4',
             colorButton: '#2A68FC',
             shadowButton: '#1E3C83',
-            error: false
+            error: false,
+            increment: 357
         }
         this.down = this.down.bind(this);
         this.up = this.up.bind(this);
@@ -34,17 +34,24 @@ class News extends Component {
         delta = 0;
     }
     up(e) {
-        // console.log(e);
+        console.log(e.clientX);
         var move = this.state.style;
         delta = this.state.x - e.clientX;
         randomPalette = palette[Math.floor(Math.random() * 6)];
         abs = Math.abs(delta);
-        if(move - delta >= -len && move - delta <= 0) {
-            if(abs > 30) {
-                (delta < 0) ? move = this.state.style + yolo : move = this.state.style - yolo;
-                (move <= -len) ? this.setState({error: true}) : this.setState({error: false});
+        if(delta == 0) {
+            if(e.clientX > ((window.innerWidth / 2) + (this.state.increment / 2.5))) {
+                move = this.state.style - this.state.increment;
+            } else if(e.clientX < ((window.innerWidth / 2) - (this.state.increment / 2.5))) {
+                move = this.state.style + this.state.increment;
             }
         }
+        if(move - delta >= -len && move - delta <= 0) {
+            if(abs > 30) {
+                (delta < 0) ? move = this.state.style + this.state.increment : move = this.state.style - this.state.increment;
+            }
+        }
+        (move <= -7000) ? this.setState({error: true}) : this.setState({error: false});
         this.setState({
             background: randomPalette.background,
             colorButton: randomPalette.colorButton,
@@ -53,16 +60,17 @@ class News extends Component {
         })
     }
     render() {
-        const { style, error } = this.state;
-
-        //add touch functionality.. 'e is not defined' onTouchEnd
+        const { style, error, background} = this.state;
         return (
             <div
             onMouseDown={this.down}
             onMouseUp={this.up}
-            onTouchStart={(e) => this.down(e.touches[0])}
-            onTouchEnd={(e) => this.up(e)}>
-                <div className="cell" style={{background: `${this.state.background}`}}>
+            onTouchStart={(e) => {
+                this.down(e.touches[0])}}
+            onTouchEnd={(e) => {
+                    this.up(e.changedTouches[0])
+                }}>
+                <div className="cell" style={{background: `${background}`}}>
                     <Sorry visibility={error}/>
                     <div 
                     className="news"
